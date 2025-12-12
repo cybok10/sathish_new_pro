@@ -1,0 +1,47 @@
+---
+title: "Introduction to Burp Suite: The Web Hacking Swiss Army Knife"
+date: "2024-02-15"
+description: "A deep dive into the most popular tool for web application security testing."
+tags: ["Tools", "Web Security", "Burp Suite"]
+---
+
+# Introduction to Burp Suite: The Web Hacking Swiss Army Knife
+
+## What is Burp Suite?
+
+Burp Suite is an integrated platform for performing security testing of web applications.  
+Its core tool is the **Proxy**, which lets you intercept requests between your browser and the target server.
+
+---
+
+## Key Components
+
+### 1. Proxy  
+This allows you to pause a web request, modify it, and send it to the server.  
+
+**Example:**  
+Changing a price parameter from `50.00` to `1.00` before the server processes it.
+
+---
+
+### 2. Repeater  
+Lets you manually modify and resend an individual request repeatedly to observe server behavior.
+
+---
+
+### 3. Intruder  
+An automated tool for brute-forcing and fuzzing inputs.  
+Used for guessing passwords or testing API endpoints.
+
+---
+
+### 4. Decoder  
+Useful for decoding and encoding values such as Base64, URL encoding, and more.
+
+---
+
+## Setting Up Burp Suite
+
+1. Install **Burp Suite Community Edition** or **Professional Edition**.  
+2. Configure your browser (or use Burp’s embedded browser) to route traffic through:
+

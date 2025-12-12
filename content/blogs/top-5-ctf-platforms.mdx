@@ -1,0 +1,65 @@
+---
+title: "The Hidden Dangers of IoT: How to Secure Your Smart Home"
+date: "2024-02-28"
+description: "Internet of Things devices are often the weakest link in network security. Here is how to lock them down."
+tags: ["IoT", "Security", "Hardware"]
+---
+
+# The Hidden Dangers of IoT: How to Secure Your Smart Home
+
+## The IoT Explosion
+
+From smart bulbs to refrigerators, everything is connected.  
+But unfortunately, security is often an afterthought for many manufacturers.
+
+---
+
+## Common Vulnerabilities
+
+### 🔑 Default Passwords  
+Many devices ship with `admin:admin` or similarly weak credentials that users never change.
+
+### 🛑 Lack of Updates  
+IoT firmware is rarely patched, leaving devices exposed for years.
+
+### 📡 Insecure Communication  
+Some devices still transmit data using **cleartext HTTP**, making them easy targets for interception.
+
+---
+
+## Hardening Your IoT Network
+
+### 1. Network Segmentation  
+Don’t put cheap IoT devices on the same Wi-Fi network as your laptop or sensitive data.  
+Use a **Guest Network** or a **separate VLAN** for IoT devices.
+
+### 2. Change Default Credentials  
+Always change the default username and password immediately after installing a new device.
+
+### 3. Disable UPnP  
+Universal Plug and Play allows devices to automatically open ports on your router.  
+This is a major security risk—disable it in your router settings.
+
+---
+
+## Example: Shodan Search
+
+Search engines like **Shodan** scan the internet for exposed IoT devices.  
+If your camera or smart device is misconfigured, it might be visible to the entire world.
+
+---
+
+## Example: Simple Port Scanner (Educational Only)
+
+```python
+# Pseudo-code for a simple port scanner (for educational use only)
+import socket
+
+target = "192.168.1.50"
+
+def scan(port):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    result = sock.connect_ex((target, port))
+    if result == 0:
+        print(f"Port {port} is Open")
+    sock.close()
