@@ -1,18 +1,5 @@
 import { 
-  GraduationCap, 
-  Code, 
-  Layers, 
-  User, 
-  Mail, 
-  Phone, 
-  Linkedin, 
-  Github, 
-  Globe, 
-  Shield, 
-  Terminal, 
-  Cpu, 
-  Cloud,
-  BookOpen
+  GraduationCap, Code, Layers, User, Mail, Phone, Linkedin, Github, Globe, Shield, Terminal, Cpu, Cloud, BookOpen 
 } from "lucide-react";
 
 export const portfolioData = {
@@ -30,7 +17,6 @@ export const portfolioData = {
       { icon: Globe, url: "https://sathish-tau.vercel.com", label: "Portfolio" },
     ]
   },
-  
   hero: {
     stats: [
       { label: "Certifications", value: "8+" },
@@ -38,10 +24,9 @@ export const portfolioData = {
       { label: "CGPA", value: "8.6" },
     ]
   },
-
   about: {
     title: "About Me",
-    description: "I am a passionate Computer Science student skilled in Python development and cybersecurity fundamentals. I have hands-on experience in scripting, automation, and secure coding practices. I am eager to contribute to real-world projects through efficient coding and proactive problem-solving, with a strong focus on penetration testing and threat analysis.",
+    description: "I am a passionate Computer Science student with a strong foundation in Python development and cybersecurity fundamentals. I have hands-on experience in scripting, automation, secure coding practices, and basic vulnerability assessment through labs and practical exercises. I am a quick learner with strong problem-solving skills and a keen interest in building secure and efficient software solutions.",
     details: [
       { label: "Name", value: "Sathish M" },
       { label: "Education", value: "B.E. CSE (DSEC)" },
@@ -50,76 +35,29 @@ export const portfolioData = {
       { label: "Location", value: "Viluppuram, Tamil Nadu" },
     ]
   },
-
   education: {
     title: "Education Path",
     items: [
-      {
-        degree: "Bachelor of Engineering (CSE)",
-        institution: "Dhanalakshmi Srinivasan Engineering College",
-        period: "2022 - Present",
-        description: "CGPA: 9.3 (Autonomous)"
-      },
-      {
-        degree: "Higher Secondary (HSC)",
-        institution: "St. Joseph's Matric. Hr. Sec. School",
-        period: "2020 - 2022",
-        description: "Grade: 89%"
-      },
-      {
-        degree: "Secondary School (SSLC)",
-        institution: "St. Joseph's Matric. Hr. Sec. School",
-        period: "2018 - 2020",
-        description: "Grade: 99%"
-      }
+      { degree: "Bachelor of Engineering (CSE)", institution: "Dhanalakshmi Srinivasan Engineering College", period: "2022 - Present", description: "CGPA: 9.3 (Autonomous)" },
+      { degree: "Higher Secondary (HSC)", institution: "St. Joseph's Matric. Hr. Sec. School", period: "2020 - 2022", description: "Grade: 89%" }
     ]
   },
-
   skills: {
     title: "Skills & Expertise",
     categories: [
-      {
-        name: "Offensive Security",
-        icon: Shield,
-        skills: ["Penetration Testing", "Vulnerability Assessment", "Metasploit", "Burp Suite Pro", "Nmap", "Wireshark", "OWASP Top 10"]
-      },
-      {
-        name: "Programming & Scripting",
-        icon: Terminal,
-        skills: ["Python", "Core Java", "C/C++", "Bash Scripting", "HTML/CSS", "JavaScript", "SQL"]
-      },
-      {
-        name: "IoT & Cloud Security",
-        icon: Cloud,
-        skills: ["AWS Fundamentals", "GCP", "Wazuh SIEM", "IoT Security", "Arduino/Raspberry Pi", "MQTT Protocol"]
-      }
+      { name: "Offensive Security", icon: Shield, skills: ["Penetration Testing", "Vulnerability Assessment", "Metasploit", "Burp Suite Pro", "Nmap", "Wireshark", "OWASP Top 10"] },
+      { name: "Programming & Scripting", icon: Terminal, skills: ["Python", "Core Java", "C/C++", "Bash Scripting", "HTML/CSS", "JavaScript", "SQL"] },
+      { name: "IoT & Cloud Security", icon: Cloud, skills: ["AWS Fundamentals", "GCP", "Wazuh SIEM", "IoT Security", "Arduino/Raspberry Pi", "MQTT Protocol"] }
     ]
   },
-
   experience: {
     title: "Experience",
     items: [
-      {
-        company: "The Red Users",
-        role: "Intern",
-        period: "Nov 2024 - Dec 2024",
-        description: "Completed comprehensive cybersecurity internship focusing on threat analysis, vulnerability assessment, and security protocols. Gained hands-on experience with enterprise security tools."
-      },
-      {
-        company: "Cyber Nerd",
-        role: "Penetration Testing Intern",
-        period: "Aug 2025 - Oct 2025",
-        description: "Practical experience in Ethical Hacking, System Hardening, and Security Tools usage including Metasploit, Nmap, and Burp Suite."
-      },
-      {
-        company: "Internship Studio",
-        role: "Ethical Hacking Intern",
-        period: "Jun 2024 - Aug 2024",
-        description: "Conducted vulnerability assessments, penetration testing, and digital footprinting using Recon-ng and other security tools."
-      }
+      { company: "Cyber Nerd", role: "Penetration Testing Intern", period: "Aug 2025 - Oct 2025", description: "Practical experience in Ethical Hacking and System Hardening." },
+      { company: "Internship Studio", role: "Ethical Hacking Intern", period: "Jun 2024 - Aug 2024", description: "Conducted vulnerability assessments and digital footprinting." },
+      { company: "The Red Users", role: "Intern", period: "Nov 2024 - Dec 2024", description: "Completed comprehensive cybersecurity internship focusing on threat analysis." }
     ]
   },
-
   certifications: {
     title: "Certifications",
     items: [
@@ -131,37 +69,21 @@ export const portfolioData = {
       { name: "Linux, Network Security, Nmap", issuer: "Udemy", date: "2024" },
     ]
   },
-
   achievements: {
     title: "Activities & Workshops",
     items: [
-      { title: "CTF Player", description: "Actively practicing cybersecurity challenges on TryHackMe, OverTheWire, PortSwigger Labs, and PicoCTF." },
+      { title: "CTF Player", description: "Actively practicing cybersecurity challenges on TryHackMe and PicoCTF." },
       { title: "IIT Madras Workshop", description: "Attended Python Workshop conducted by TopEngineers at IIT Madras." },
       { title: "OWASP Meetup", description: "Participated in OWASP Community Meetup, Coimbatore." },
     ]
   },
-
   projects: {
     title: "Featured Projects",
     items: [
-      {
-        title: "AI-driven Network Intrusion Detection System",
-        description: "Developed an intelligent NIDS leveraging machine learning to identify and prevent malicious network activities in real-time.",
-        techStack: ["Python", "Scikit-learn", "TensorFlow", "Snort", "Wireshark"],
-        link: "#"
-      },
-      {
-        title: "Centralized Log Monitoring System",
-        description: "Designed a centralized log monitoring solution using Google Cloud Platform and Wazuh SIEM for incident detection.",
-        techStack: ["GCP", "Wazuh", "Apache", "Ubuntu Linux"],
-        link: "#"
-      },
-      {
-        title: "SigHunter Bot", 
-        description: "A Telegram bot designed to detect and prevent malware in real-time (Previous Work).",
-        techStack: ["Python", "Telegram API", "Cybersecurity"],
-        link: "#"
-      }
+      { title: "AI-driven NIDS", description: "Intelligent Network Intrusion Detection System using ML.", techStack: ["Python", "Scikit-learn", "Snort"], link: "#" },
+      { title: "Centralized Log Monitoring", description: "Log monitoring using GCP and Wazuh SIEM.", techStack: ["GCP", "Wazuh", "Apache"], link: "#" },
+      { title: "WiFi Jammer Project", description: "Educational project to demonstrate WiFi jamming concepts and wireless network disruption techniques in a controlled environment.", techStack: ["Python", "Linux", "Wireless Networking"], link: "#" }
+
     ]
   }
 };

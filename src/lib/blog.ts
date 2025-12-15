@@ -2,63 +2,67 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-const blogsDirectory = path.join(process.cwd(), 'content/blogs');
+// Define the path to your blog posts directory
+// This assumes your posts are in 'src/content/posts' or just 'posts' at the root
+// Adjust this path if your markdown files are stored elsewhere
+const postsDirectory = path.join(process.cwd(), 'src/content/posts');
 
-export function getBlogPosts() {
-  // 1. Create directory if it doesn't exist to prevent errors
-  if (!fs.existsSync(blogsDirectory)) {
-    try {
-      fs.mkdirSync(blogsDirectory, { recursive: true });
-    } catch (e) {
-      return [];
-    }
-    return [];
-  }
-  
-  const fileNames = fs.readdirSync(blogsDirectory);
-  
-  const allBlogsData = fileNames.map((fileName) => {
-    // Remove ".mdx" from file name to get id
-    const slug = fileName.replace(/\.mdx$/, '');
-
-    // Read markdown file as string
-    const fullPath = path.join(blogsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-
-    // Use gray-matter to parse the post metadata section
-    const matterResult = matter(fileContents);
-
-    // Combine the data with the id
-    return {
-      slug,
-      ...(matterResult.data as { date: string; title: string; description: string; tags: string[] }),
-    };
-  });
-
-  // Sort posts by date
-  return allBlogsData.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1;
-    } else {
-      return -1;
-    }
-  });
+export interface BlogPost {
+  slug: string;
+  title: string;
+  date: string;
+  excerpt?: string;
+  coverImage?: string;
+  content: string;
+  tags?: string[];
+  [key: string]: any;
 }
 
-export function getBlogPost(slug: string) {
-  const fullPath = path.join(blogsDirectory, `${slug}.mdx`);
-  // Check if file exists
-  if (!fs.existsSync(fullPath)) {
-    return null;
+/**
+ * Gets all post slugs (filenames) from the posts directory
+ */
+export function getPostSlugs() {
+  if (!fs.existsSync(postsDirectory)) {
+    return [];
   }
+  return fs.readdirSync(postsDirectory).filter((file) => file.endsWith('.md') || file.endsWith('.mdx'));
+}
+
+/**
+ * Gets a single post by its slug
+ */
+export function getPostBySlug(slug: string): BlogPost {
+  const realSlug = slug.replace(/\.mdx?$/, '');
+  
+  // Try to find the file as .md or .mdx
+  let fullPath = path.join(postsDirectory, `${realSlug}.md`);
+  if (!fs.existsSync(fullPath)) {
+    fullPath = path.join(postsDirectory, `${realSlug}.mdx`);
+  }
+
   const fileContents = fs.readFileSync(fullPath, 'utf8');
-  
-  // Use gray-matter to parse the post metadata section
   const { data, content } = matter(fileContents);
-  
+
   return {
-    slug,
-    metadata: data as { date: string; title: string; description: string; tags: string[] },
+    slug: realSlug,
+    title: data.title || 'Untitled Post',
+    date: data.date ? data.date.toString() : new Date().toISOString(),
+    excerpt: data.excerpt || '',
+    coverImage: data.coverImage || '',
+    tags: data.tags || [],
     content,
+    ...data,
   };
+}
+
+/**
+ * Gets all posts, sorted by date (newest first)
+ */
+export function getAllPosts(): BlogPost[] {
+  const slugs = getPostSlugs();
+  const posts = slugs
+    .map((slug) => getPostBySlug(slug))
+    // sort posts by date in descending order
+    .sort((post1, post2) => (new Date(post1.date) > new Date(post2.date) ? -1 : 1));
+  return posts;
 }

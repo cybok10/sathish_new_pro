@@ -4,61 +4,76 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { portfolioData } from '@/data/portfolio';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { Github, ExternalLink, FolderGit2 } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { Github, ExternalLink } from 'lucide-react';
 
 export const Projects = () => {
   const { projects } = portfolioData;
 
-  return (
-    <section id="projects" className="py-20 bg-slate-900/20">
-      <div className="container mx-auto px-6">
-        <SectionHeading title={projects.title} subtitle="Real-world applications & experiments" />
+  // Guard clause in case data is missing entirely
+  if (!projects || !projects.items) return null;
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+  return (
+    <section id="projects" className="py-24 bg-[#0a0a0a]">
+      <div className="container mx-auto px-6">
+        <SectionHeading title={projects.title} subtitle="What I've been working on" />
+
+        {/* Grid Layout: 1 col mobile, 2 col tablet, 3 col desktop (lg:grid-cols-3) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {projects.items.map((project, index) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
+              key={project.id || index}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="glass-card rounded-xl overflow-hidden flex flex-col h-full group hover:border-blue-500/50 transition-colors duration-300"
+              className="bg-[#111111] rounded-2xl overflow-hidden border border-white/5 group hover:border-violet-500/50 transition-all duration-300 flex flex-col h-full"
             >
-              {/* Card Header (Decoration) */}
-              <div className="h-2 bg-gradient-to-r from-blue-500 to-violet-500" />
+              {/* Preview Area (Top Half - Purple Gradient) */}
+              <div className="h-56 w-full bg-gradient-to-br from-violet-900/80 to-indigo-900/80 relative flex items-center justify-center overflow-hidden shrink-0">
+                 {/* Overlay Gradient for depth */}
+                 <div className="absolute inset-0 bg-black/20" />
+                 
+                 {/* Text Placeholder */}
+                 <h3 className="relative z-10 text-xl font-bold text-white/90 drop-shadow-md select-none group-hover:scale-105 transition-transform duration-500">
+                    {project.title} Preview
+                 </h3>
+              </div>
 
-              <div className="p-6 flex-1 flex flex-col">
-                <div className="flex justify-between items-start mb-4">
-                  <div className="p-3 bg-blue-500/10 rounded-lg text-blue-400">
-                    <FolderGit2 size={24} />
-                  </div>
-                  <div className="flex gap-2">
-                    {/* If you have a GitHub link, this button appears. Currently using placeholders */}
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
-                      <Github size={20} />
-                    </a>
-                  </div>
-                </div>
-
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
-                  {project.title}
-                </h3>
+              {/* Content Area (Bottom Half) */}
+              <div className="p-8 flex flex-col flex-grow">
+                <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
                 
-                <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                <p className="text-slate-400 text-sm mb-6 leading-relaxed flex-grow">
                   {project.description}
                 </p>
 
-                {/* Tech Stack Tags */}
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {project.techStack.map((tech, i) => (
-                    <span 
-                      key={i} 
-                      className="text-xs font-mono text-blue-300 bg-blue-500/10 px-2 py-1 rounded border border-blue-500/20"
-                    >
+                {/* Tech Stack with Safety Check (|| []) */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {(project.technologies || []).map((tech) => (
+                    <span key={tech} className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold border border-slate-800 px-2 py-1 rounded">
                       {tech}
                     </span>
                   ))}
+                </div>
+
+                {/* Footer Links */}
+                <div className="flex gap-6 mt-auto pt-4 border-t border-white/5">
+                  {project.link && (
+                    <a 
+                      href={project.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-violet-400 transition-colors"
+                    >
+                      <Github size={18} /> Code
+                    </a>
+                  )}
+                  <a 
+                    href="#" 
+                    className="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-violet-400 transition-colors"
+                  >
+                    <ExternalLink size={18} /> Live Demo
+                  </a>
                 </div>
               </div>
             </motion.div>
